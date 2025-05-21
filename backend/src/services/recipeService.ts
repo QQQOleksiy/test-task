@@ -61,15 +61,18 @@ export class RecipeService {
             const mealData: RawRecipeData = response.data.meals[0];
 
             const ingredients: Ingredient[] = [];
-            
+
             for (let i = 1; i <= 20; i++) {
-                const ingredientKey = `strIngredient${i}`;
-                const measureKey = `strMeasure${i}`;
-                
-                if (mealData[ingredientKey] && mealData[ingredientKey].trim()) {
+                const ingredientKey = `strIngredient${i}` as keyof RawRecipeData;
+                const measureKey = `strMeasure${i}` as keyof RawRecipeData;
+
+                const ingredientName = mealData[ingredientKey];
+                const ingredientMeasure = mealData[measureKey];
+
+                if (typeof ingredientName === 'string' && ingredientName.trim() !== '') {
                     ingredients.push({
-                        name: mealData[ingredientKey] as string,
-                        measure: mealData[measureKey] as string || ''
+                        name: ingredientName.trim(),
+                        measure: (typeof ingredientMeasure === 'string' ? ingredientMeasure.trim() : '')
                     });
                 }
             }

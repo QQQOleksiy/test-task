@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, isFulfilled, isPending, isRejected} from "@reduxjs/toolkit";
-import type {IRecipeSummary, IRecipeTypes} from "../../types";
+import type {FilterType, IRecipeSummary, IRecipeTypes} from "../../types";
 import mealService from "../../services/mealService.ts";
 import type {AxiosError} from "axios";
 
@@ -9,6 +9,11 @@ interface IState {
     mealById: IRecipeTypes | null;
     filterMeals: IRecipeSummary[];
     loader: boolean;
+}
+
+interface IFilterParams {
+    filterType: FilterType;
+    value: string;
 }
 
 const initialState: IState = {
@@ -51,7 +56,7 @@ const getAll = createAsyncThunk<IRecipeTypes[], string>(
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await mealService.getAll()
-            return data;
+            return data.data;
 
         } catch (e) {
             const err = e as AxiosError
@@ -67,7 +72,7 @@ const getById = createAsyncThunk<IRecipeTypes, string>(
     async (id: string, {rejectWithValue}) => {
         try {
             const {data} = await mealService.getById(id)
-            return data;
+            return data.data;
 
         } catch (e) {
             const err = e as AxiosError
@@ -77,13 +82,13 @@ const getById = createAsyncThunk<IRecipeTypes, string>(
     }
 )
 
-const getFilteredMeals = createAsyncThunk<IRecipeSummary[], string>(
+const getFilteredMeals = createAsyncThunk<IRecipeSummary[], IFilterParams>(
     'mealSlice/getFilteredMeals',
     // @ts-ignore
     async ({filterType, value } , {rejectWithValue}) => {
         try {
             const {data} = await mealService.getFiltered(filterType, value)
-            return data;
+            return data.data;
 
         } catch (e) {
             const err = e as AxiosError

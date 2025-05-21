@@ -1,0 +1,24 @@
+.header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    background-image: linear-gradient(to right bottom, #8c8969, #cccba7);
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header > a{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.container_user_search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

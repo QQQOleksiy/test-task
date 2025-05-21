@@ -1,16 +1,18 @@
-# Бекенд Сервер
+# Backend Server
 # RecipeTypes Book API
 
-Бекенд для застосунку "RecipeTypes Book", який використовує TheMealDB API для надання доступу до інформації про рецепти.
+Backend for the RecipeTypes Book application that uses TheMealDB API to provide access to recipe information.
 
-## Технології
+## Technologies
 
 - Node.js
 - Express.js
 - TypeScript
-- Axios
+- Axios.
 
-## Структура проекту
-Базовий Express сервер для веб-додатку.
+## Project structure
+Basic Express server for a web application.
 
-## Структура проекту
+## To run
+- npm install
+- npm run dev

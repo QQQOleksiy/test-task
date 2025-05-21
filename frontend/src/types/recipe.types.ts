@@ -12,7 +12,7 @@ export interface IRecipeSummary {
 export interface IRecipeTypes {
   idMeal: string;
   strMeal: string;
-  strCategory?: string | null;
+  strCategory?: FilterType | null;
   strArea?: string | null;
   strInstructions?: string | null;
   strMealThumb?: string | null;
@@ -29,4 +29,4 @@ export interface IApiResponse<T> {
   count?: number;
 }
 
-export type FilterType = "ingredient" | "country" | "category" | "all";
+export type FilterType = "ingredient" | "country" | "category";

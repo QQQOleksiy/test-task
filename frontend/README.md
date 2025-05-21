@@ -52,3 +52,6 @@ export default tseslint.config({
   },
 })
 ```
+## To run
+- npm install
+- npm run dev

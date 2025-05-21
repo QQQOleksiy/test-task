@@ -1,14 +1,18 @@
 import type {FC} from "react";
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import Loader from "../../components/Loader/Loader.tsx";
+import {useAppSelector} from "../../hooks/redux.hooks.ts";
+import Header from "../../components/Header/Header.tsx";
 
 const Layout: FC = () => {
 
-    const navigate = useNavigate()
+    const loader = useAppSelector(state => state.mealReducer.loader)
+
     return (
         <>
+            <Header/>
             <Outlet/>
-            <button onClick={() => navigate('/')}>Go to home</button>
-            <button onClick={() => navigate('/meal_by_id')}>Go to meal by id</button>
+            {loader && <Loader/>}
         </>
     );
 };
